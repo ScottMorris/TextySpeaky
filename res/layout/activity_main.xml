@@ -16,6 +16,7 @@
         android:maxLines="3"
         android:minLines="3"
         android:hint="@string/edit_text_hint"
+        android:textIsSelectable="true"
         android:saveEnabled="true" >
 
         <requestFocus />

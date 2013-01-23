@@ -63,9 +63,6 @@ public class MainActivity extends Activity implements OnInitListener {
 				}
 			}
 		});
-
-		if (mTTS == null)
-			mTTS = new TextToSpeech(this, this);
 	}
 
 	@Override
@@ -78,6 +75,9 @@ public class MainActivity extends Activity implements OnInitListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+
+		if (mTTS == null)
+			mTTS = new TextToSpeech(this, this);
 	}
 
 	@Override
@@ -113,7 +113,8 @@ public class MainActivity extends Activity implements OnInitListener {
 			String language = PreferenceManager.getDefaultSharedPreferences(
 					this).getString("tts_lang", "en_US");
 			Locale locale = new Locale(language);
-			Log.d("MainActivity", "TTS Local: " + locale.getLanguage());
+			Log.d("MainActivity",
+					"TTS Local Suggested: " + locale.getLanguage());
 			int result = mTTS.setLanguage(locale);
 			// check result
 			if (result == TextToSpeech.LANG_MISSING_DATA
@@ -122,6 +123,8 @@ public class MainActivity extends Activity implements OnInitListener {
 			} else {
 				mPlayButton.setEnabled(true);
 			}
+			Log.d("MainActivity", "TTS Local: "
+					+ mTTS.getLanguage().getLanguage());
 		} else {
 			Log.e("MainActivity", "TTS failed to Initalize");
 		}
